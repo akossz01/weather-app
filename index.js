@@ -5,11 +5,11 @@ const weatherBox = document.querySelector('.weather-box');
 const weatherDetails = document.querySelector('.weather-details');
 const error404 = document.querySelector('.not-found');
 
-const cityNames = ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Philadelphia', 'Phoenix', 'San Antonio', 'San Diego', 'Dallas', 'San Jose'];
-
 search.addEventListener('click', handler, false);
 
-/* document.querySelector('.search-box').addEventListener('keydown', (event) => {
+let celsius = 1;
+
+document.querySelector('.search-box').addEventListener('keydown', (event) => {
     if (event.keyCode !== 13) {
         //return console.log('Enter not pressed');
         return;
@@ -19,41 +19,6 @@ search.addEventListener('click', handler, false);
     handler();
 });
 
-document.querySelector('.search-box').addEventListener('input', () => {
-    // Get the current input text
-    const inputText = searchBox.value.trim().toLowerCase();
-    
-    // Filter the city names for any matches to the input text
-    const matchingCityNames = cityNames.filter(cityName => cityName.toLowerCase().startsWith(inputText));
-
-    console.log(matchingCityNames);
-
-    // Create a dropdown list element
-    const dropdown = document.createElement('ul');
-    dropdown.classList.add('dropdown');
-
-    // Add a list item element for each matching city name
-    matchingCityNames.forEach(cityName => {
-    const listItem = document.createElement('li');
-    listItem.textContent = cityName;
-    
-    // Add an event listener to each list item
-    // When the user clicks on a list item, populate the search box with that name
-    // and execute a search for weather data for that city
-    listItem.addEventListener('click', () => {
-        searchBox.value = cityName;
-        executeSearch(cityName);
-        dropdown.remove();
-    });
-    
-    dropdown.appendChild(listItem);
-    });
-    const searchBoxRect = searchBox.getBoundingClientRect();
-    dropdown.style.top = `${searchBoxRect.bottom}px`;
-    dropdown.style.left = `${searchBoxRect.left}px`;
-
-    document.body.appendChild(dropdown);
-  }); */
 
 function handler(event) {
     const APIKey = 'f34b9a94b07d1a842234259a4d379f61';
@@ -96,11 +61,11 @@ function handler(event) {
 
             //date.innerHTML = `${dateYear}.${addZero(dateMonth)}.${addZero(dateDay)}`;
 
-            const sunriseTime = new Date(json.sys.sunrise * 1000);
+            const sunriseTime = new Date((json.sys.sunrise + json.timezone) * 1000);
             const sunriseHour = sunriseTime.getHours();
             const sunriseMin = sunriseTime.getMinutes();
             
-            const sunsetTime = new Date(json.sys.sunset * 1000);
+            const sunsetTime = new Date((json.sys.sunset + json.timezone) * 1000);
             const sunsetHour = sunsetTime.getHours();
             const sunsetMin = sunsetTime.getMinutes();
 
@@ -142,9 +107,13 @@ function handler(event) {
             weatherDetails.style.display = '';
             weatherBox.classList.add('fadeIn');
             weatherDetails.classList.add('fadeIn');
-            container.style.height = '720px';
+            container.style.height = '740px';
 
-            animateValue(temperature, json.main.temp/2, json.main.temp, 800);
+            if (celsius) {
+                animateValue(temperature, json.main.temp/2, json.main.temp, 800);
+            } else {
+                animateValue(temperature, (json.main.temp*1.8+35)/2, (json.main.temp*1.8+33), 800);
+            }
         });
 }
 
@@ -153,7 +122,12 @@ function animateValue(obj, start, end, duration) {
     const step = (timestamp) => {
       if (!startTimestamp) startTimestamp = timestamp;
       const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-      obj.innerHTML = Math.floor(progress * (end - start) + start) + '°C';
+
+      if (celsius) {
+        obj.innerHTML = Math.floor(progress * (end - start) + start) + '°C';
+      } else {
+        obj.innerHTML = Math.floor(progress * (end - start) + start) + '°F';
+      }
       if (progress < 1) {
         window.requestAnimationFrame(step);
       }
@@ -169,3 +143,13 @@ function addZero(num){
         return num;
     }
 }
+
+document.querySelector('.checkb').addEventListener('change', (event) =>{
+    if (document.querySelector('.checkb').checked){
+        celsius = 0;
+        animateValue(handler());
+    } else {
+        celsius = 1;
+        animateValue(handler());
+    }
+});
