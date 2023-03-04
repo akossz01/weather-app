@@ -37,11 +37,14 @@ function handler(event) {
                 weatherDetails.style.display = 'none';
                 error404.style.display = 'block';
                 error404.classList.add('fadeIn');
+                document.querySelector('.conversion').style.opacity = 0; //checkbox
                 return;
             }
 
             error404.style.display = 'none';
             error404.classList.remove('fadeIn');
+
+            document.querySelector('.conversion').style.opacity = 1;
 
             const date = document.querySelector('.weather-box .date');
             const image = document.querySelector('.weather-box img');
