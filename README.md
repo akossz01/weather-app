@@ -1,4 +1,5 @@
 <h3> Simple Weather App </h3>
+<a href="http://weatherapp.szaboakos.ro/"><b>Check it out</b></a>
 <br>
 
 <b>Celsius/Fahrenheit Switch</b>
