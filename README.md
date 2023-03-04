@@ -7,8 +7,3 @@
   <img src="https://i.imgur.com/UjqeUUC.png" width="200">
 </div>
 
-<style> 
-.photos{
-  display: inline-flex;
- }
-</style>
