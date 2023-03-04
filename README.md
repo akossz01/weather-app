@@ -7,7 +7,7 @@
   <img src="https://i.imgur.com/k2aersM.png" height="400">
 </div>
 
-<p>What I learned: </p>
+<p><b>What I learned: </p>
 <ul>
   <li>Counter animation for temperature</li>
   <li>Handling UNIX time + Timezone conversions</li>
