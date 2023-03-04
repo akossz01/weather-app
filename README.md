@@ -1,3 +1,3 @@
 # weather-app
 
-![alt text](https://imgur.com/HorM5iD)
+![alt text](https://i.imgur.com/HorM5iD.png)
