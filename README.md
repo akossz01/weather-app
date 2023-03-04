@@ -6,3 +6,11 @@
   <img src="https://i.imgur.com/9LoiDbY.png" height="400">
   <img src="https://i.imgur.com/k2aersM.png" height="400">
 </div>
+
+<p>What I learned: </p>
+<ul>
+  <li>Counter animation for temperature</li>
+  <li>Handling UNIX time + Timezone conversions</li>
+  <li>Using Event Listener</li>
+  <li>How to use a simple Web API</li>
+</ul>
