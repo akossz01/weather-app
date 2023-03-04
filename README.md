@@ -8,6 +8,8 @@
 
 <br>
 
+<b>Ver. 1</b>
+
 <div class="photos">
   <img src="https://i.imgur.com/HorM5iD.png" height="300vh">
   <img src="https://i.imgur.com/9LoiDbY.png" height="300vh">
