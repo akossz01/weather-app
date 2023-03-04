@@ -110,7 +110,7 @@ function handler(event) {
             weatherDetails.style.display = '';
             weatherBox.classList.add('fadeIn');
             weatherDetails.classList.add('fadeIn');
-            container.style.height = '740px';
+            container.style.height = '750px';
 
             if (celsius) {
                 animateValue(temperature, json.main.temp/2, json.main.temp, 800);
