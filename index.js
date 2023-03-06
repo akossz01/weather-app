@@ -64,11 +64,11 @@ function handler(event) {
 
             //date.innerHTML = `${dateYear}.${addZero(dateMonth)}.${addZero(dateDay)}`;
 
-            const sunriseTime = new Date((json.sys.sunrise + json.timezone) * 1000);
+            const sunriseTime = new Date((json.sys.sunrise + (json.timezone/3600)) * 1000);
             const sunriseHour = sunriseTime.getHours();
             const sunriseMin = sunriseTime.getMinutes();
             
-            const sunsetTime = new Date((json.sys.sunset + json.timezone) * 1000);
+            const sunsetTime = new Date((json.sys.sunset + (json.timezone/3600)) * 1000);
             const sunsetHour = sunsetTime.getHours();
             const sunsetMin = sunsetTime.getMinutes();
 
